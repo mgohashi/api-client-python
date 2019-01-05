@@ -1,23 +1,23 @@
-#Sample Tornado Python API-Client
+# Sample Tornado Python API-Client
 
-###To install it use
+### To install it use
 ```shell
 $ python3 setup.py install
 ```
 
-###Available endpoints
+### Available endpoints
 
 | HTTP Method | URL                      | REQUEST BODY           | RESPONSE BODY                     |
 |-------------|--------------------------|------------------------|-----------------------------------|
-| GET         | /api/v1/client           |                        | Ref [Array Client](#Array Client) |  
-| POST        | /api/v1/client           |                        | Ref [Client](#Client)             |
-| GET         | /api/v1/client/([0-9]*)  |                        | Ref [Client](#Client)             |
-| PUT         | /api/v1/client/([0-9]*)  | Ref [Client](#Client)  | Ref [Client](#Client)             |
-| DELETE      | /api/v1/client/([0-9]*)  |                        | Ref [Client](#Client)             |
+| GET         | /api/v1/client           |                        | Ref [Array Client](#array-client) |  
+| POST        | /api/v1/client           |                        | Ref [Client](#client)             |
+| GET         | /api/v1/client/([0-9]*)  |                        | Ref [Client](#client)             |
+| PUT         | /api/v1/client/([0-9]*)  | Ref [Client](#client)  | Ref [Client](#client)             |
+| DELETE      | /api/v1/client/([0-9]*)  |                        | Ref [Client](#client)             |
 
-###Model
+### Model
 
-####Array Client
+#### Array Client
 
 ```javascript
 [
@@ -32,7 +32,7 @@ $ python3 setup.py install
 ]
 ```
 
-####Client
+#### Client
 ```javascript
 {
 	"oid": "string",
