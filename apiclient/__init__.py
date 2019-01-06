@@ -1,22 +1,25 @@
 from apiclient.api import ClientsHandler, ClientHandler
-from os import path
+from pkg_resources import resource_filename
 import logging.config
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado.options import define, options
 from tornado.web import Application
 
-log_file_path = path.join(
-    path.dirname(path.abspath(__file__)),
-    'logging.ini')
-logging.config.fileConfig(
-    log_file_path,
-    disable_existing_loggers=False)
-define('port', default=8888, help='port to listen on')
-
 
 def main():
     """Construct and serve the tornado application."""
+
+    logging_cfg_file = 'logging.ini'
+    try:
+        logging.config.fileConfig(logging_cfg_file,
+                                  disable_existing_loggers=False)
+    except KeyError:
+        log_config_location = resource_filename(__name__, logging_cfg_file)
+        logging.config.fileConfig(log_config_location, disable_existing_loggers=False)
+
+    define('port', default=8888, help='port to listen on')
+
     app = Application(
         [
             (r"/api/v1/client", ClientsHandler),
