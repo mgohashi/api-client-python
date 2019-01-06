@@ -2,5 +2,6 @@ dist
 build
 ApiClient.egg-info
 venv
+.venv
 **/__pycache__/
 
