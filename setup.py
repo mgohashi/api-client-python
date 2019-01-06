@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 requires = [
-    "tornado"
+    "tornado>=5,<6"
 ]
 
 setup(
