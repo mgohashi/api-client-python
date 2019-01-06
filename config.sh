@@ -2,6 +2,4 @@
 
 export PIPENV_VENV_IN_PROJECT="Y"
 
-pipenv shell
-
-pipenv install -e .
+pipenv shell --fancy

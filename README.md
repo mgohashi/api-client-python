@@ -1,8 +1,10 @@
 # Sample Tornado Python API-Client
 
-### To install it use
+### To configure use
 ```shell
-$ python3 setup.py install
+$ ./config.sh
+
+$ pipenv install -e .
 ```
 
 ### Available endpoints

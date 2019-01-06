@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "122469afba49c6086e557cf0dd65961d93fa0ad142fc89eebeb68f629268c1d2"
+            "sha256": "2f8d23448bf78f5a6a9f7200b94dec232aa9caf13e8e61cbc7b2fa377a6b547c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,10 @@
         ]
     },
     "default": {
+        "apiclient": {
+            "editable": true,
+            "path": "."
+        },
         "tornado": {
             "hashes": [
                 "sha256:0662d28b1ca9f67108c7e3b77afabfb9c7e87bde174fbda78186ecedc2499a9d",
