@@ -1,9 +1,13 @@
 # Sample Tornado Python API-Client
 
-### To configure use
+To configure use
 ```shell
-$ ./config.sh
-
+$ export PIPENV_VENV_IN_PROJECT="1"
+```
+```shell
+$ pipenv shell --fancy
+```
+```shell
 $ pipenv install -e .
 ```
 
