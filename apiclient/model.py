@@ -27,15 +27,19 @@ class Client(InMemoryStorage):
             raise ValueError(f'Invalid Status {status} valid {Client.VALID_STATUS.keys()}')
 
     @classmethod
-    def find(cls, criteria):
-        return super().__find_obj__(cls.DB_NAME, criteria)
+    async def find(cls, criteria):
+        return await super().__find_obj__(cls.DB_NAME, criteria)
 
     @classmethod
-    def get(cls, id):
+    async def get(cls, id):
         try:
-            return next(iter(super().__find_obj__(cls.DB_NAME, lambda x: x.oid == id)))
+            return next(iter(await super().__find_obj__(cls.DB_NAME, lambda x: x.oid == id)))
         except StopIteration:
             return None
+
+    @classmethod
+    async def remove_all(cls):
+        await super().__remove_all__(cls.DB_NAME)
 
     def set_active(self):
         self.__status__ = Client.VALID_STATUS['active']
@@ -46,15 +50,24 @@ class Client(InMemoryStorage):
     def set_deleted(self):
         self.__status__ = Client.VALID_STATUS['deleted']
 
-    def save(self):
-        return super().__save_obj__(Client.DB_NAME, self,
-                                    lambda x: x.oid == self.oid)
+    async def save(self):
+        return await super().__save_obj__(Client.DB_NAME, self,
+                                          lambda x: x.oid == self.oid)
 
-    def remove(self):
-        return super().__remove_obj__(Client.DB_NAME, lambda x: x.oid == self.oid)
+    async def remove(self):
+        return await super().__remove_obj__(Client.DB_NAME, lambda x: x.oid == self.oid)
 
     def __repr__(self):
         return f"Client [{self.oid}, {self.name}, {self.email}, {self.birth_date}, {self.status}]"
+
+    def __eq__(self, other):
+        if isinstance(other, Client):
+            return self.oid == other.oid and \
+                   self.name == other.name and \
+                   self.email == other.email and \
+                   self.birth_date == other.birth_date and \
+                   self.status == other.status
+        return False
 
     def __merge__(self, other):
         self.oid = other.oid
@@ -90,4 +103,3 @@ class Client(InMemoryStorage):
 
 
 InMemoryStorage.__db__[Client.DB_NAME] = []
-

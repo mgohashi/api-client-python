@@ -8,7 +8,7 @@ setup(
     name='ApiClient',
     version='0.1',
     packages=find_packages(),
-    url='',
+    url='https://github.com/mgohashi/api-client-python',
     license='',
     author='Marcelo Ohashi',
     author_email='mohashi@gmail.com',

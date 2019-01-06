@@ -24,7 +24,9 @@ def main():
         [
             (r"/api/v1/client", ClientsHandler),
             (r"/api/v1/client/([0-9]+)", ClientHandler)
-        ])
+        ],
+        autoreload=True,
+        debug=True)
     http_server = HTTPServer(app)
     http_server.listen(options.port)
     print(f'Listening on http://127.0.0.1:{options.port}')

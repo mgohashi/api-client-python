@@ -25,20 +25,25 @@ class BaseClientHandler(RequestHandler):
 
 
 class ClientsHandler(BaseClientHandler):
-    SUPPORTED_METHODS = ["GET", "POST"]
+    SUPPORTED_METHODS = ["GET", "POST", "DELETE"]
 
     async def get(self):
-        clients = list(Client.find(lambda c: True))
+        clients = list(await Client.find(lambda c: True))
         self.send_response(clients, 200)
 
     async def post(self):
+        print("I will save now 2!")
         client = Client(**self.json_args)
-        saved_client = Client.get(client.oid)
+        saved_client = await Client.get(client.oid)
         if not saved_client:
-            client.save()
+            await client.save()
             self.send_response(client, 201)
         else:
             self.send_response(saved_client, 409)
+
+    async def delete(self):
+        await Client.remove_all()
+        self.send_response("{\"message\": \"Done\"}", 200, False)
 
 
 class ClientHandler(BaseClientHandler):
@@ -46,25 +51,25 @@ class ClientHandler(BaseClientHandler):
 
     async def put(self, id):
         client = Client(**self.json_args)
-        saved_client = Client.get(id)
+        saved_client = await Client.get(id)
         if saved_client:
             saved_client.__merge__(client)
-            saved_client.save()
+            await saved_client.save()
             self.send_response(client, 200)
         else:
             self.send_response("{\"message\": \"Client not found!\"}", 404, False)
 
     async def get(self, id):
-        saved_client = Client.get(id)
+        saved_client = await Client.get(id)
         if saved_client:
             self.send_response(saved_client, 200)
         else:
             self.send_response("{\"message\": \"Client not found!\"}", 404, False)
 
     async def delete(self, id):
-        saved_client = Client.get(id)
+        saved_client = await Client.get(id)
         if saved_client:
-            saved_client.remove()
+            await saved_client.remove()
             self.send_response(saved_client, 200)
         else:
             self.send_response("{\"message\": \"Client not found!\"}", 404, False)
