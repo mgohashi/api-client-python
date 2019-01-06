@@ -23,7 +23,6 @@ $ pipenv install -e .
 
 ```javascript
 [
-    //<One or mode>
     {
         "oid": "string",
         "name": "string",
