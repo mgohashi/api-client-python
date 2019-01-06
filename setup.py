@@ -13,8 +13,8 @@ setup(
     author='Marcelo Ohashi',
     author_email='mohashi@gmail.com',
     description='API Client with some methods to demonstrate a REST API',
-    install_reqs=requires,
-    include_package_data = True,
+    install_requires=requires,
+    include_package_data=True,
     entry_points='''
         [console_scripts]
         run-api-client=apiclient:main
